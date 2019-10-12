@@ -33,11 +33,11 @@
 //#define BME680_DEBUG
 
 ///! These SPI pins must be global in order to work with underlying library
-
+/* Not required for AFE Firmware
 int8_t _BME680_SoftwareSPI_MOSI; ///< Global SPI MOSI pin
 int8_t _BME680_SoftwareSPI_MISO; ///< Global SPI MISO pin
 int8_t _BME680_SoftwareSPI_SCK;  ///< Globak SPI Clock pin
-
+*/
 // Our hardware interface functions
 static int8_t i2c_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *reg_data,
                         uint16_t len);
@@ -63,6 +63,7 @@ static void delay_msec(uint32_t ms);
     @param  cspin SPI chip select. If not passed in, I2C will be used
 */
 /**************************************************************************/
+/* Not required for AFE Firmware
 Adafruit_BME680::Adafruit_BME680(int8_t cspin) : _cs(cspin), _meas_end(0) {
   _BME680_SoftwareSPI_MOSI = -1;
   _BME680_SoftwareSPI_MISO = -1;
@@ -70,7 +71,7 @@ Adafruit_BME680::Adafruit_BME680(int8_t cspin) : _cs(cspin), _meas_end(0) {
   _filterEnabled = _tempEnabled = _humEnabled = _presEnabled = _gasEnabled =
       false;
 }
-
+*/
 /**************************************************************************/
 /*!
     @brief  Instantiates sensor with Software (bit-bang) SPI.
@@ -80,6 +81,7 @@ Adafruit_BME680::Adafruit_BME680(int8_t cspin) : _cs(cspin), _meas_end(0) {
     @param  sckpin SPI Clock
 */
 /**************************************************************************/
+/* Not required for AFE Firmware
 Adafruit_BME680::Adafruit_BME680(int8_t cspin, int8_t mosipin, int8_t misopin,
                                  int8_t sckpin)
     : _cs(cspin) {
@@ -89,7 +91,7 @@ Adafruit_BME680::Adafruit_BME680(int8_t cspin, int8_t mosipin, int8_t misopin,
   _filterEnabled = _tempEnabled = _humEnabled = _presEnabled = _gasEnabled =
       false;
 }
-
+*/
 /**************************************************************************/
 /*!
     @brief Initializes the sensor
@@ -104,8 +106,9 @@ Adafruit_BME680::Adafruit_BME680(int8_t cspin, int8_t mosipin, int8_t misopin,
 /**************************************************************************/
 bool Adafruit_BME680::begin(uint8_t addr) {
   _i2caddr = addr;
-
+/* Not required for AFE Firmware
   if (_cs == -1) {
+*/
     // i2c
 
     /* Not required for AFE
@@ -115,8 +118,8 @@ bool Adafruit_BME680::begin(uint8_t addr) {
     gas_sensor.intf = BME680_I2C_INTF;
     gas_sensor.read = &i2c_read;
     gas_sensor.write = &i2c_write;
+  /* Not required for AFE Firmware
   }
-  /* Not required for AFE
 else {
   digitalWrite(_cs, HIGH);
   pinMode(_cs, OUTPUT);

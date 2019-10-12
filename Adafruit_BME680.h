@@ -31,7 +31,9 @@
 #endif
 #include "bme680.h"
 #include <Adafruit_Sensor.h>
+/* Not required for AFE Firmware
 #include <SPI.h>
+*/
 #include <Wire.h>
 
 /*=========================================================================
@@ -73,9 +75,10 @@ public:
 
 class Adafruit_BME680 {
 public:
+/* Not required for AFE Firmware
   Adafruit_BME680(int8_t cspin = -1);
   Adafruit_BME680(int8_t cspin, int8_t mosipin, int8_t misopin, int8_t sckpin);
-
+*/
   bool begin(uint8_t addr = BME680_DEFAULT_ADDRESS);
   float readTemperature(void);
   float readPressure(void);
@@ -122,11 +125,13 @@ private:
   bool _filterEnabled, _tempEnabled, _humEnabled, _presEnabled, _gasEnabled;
   uint8_t _i2caddr;
   int32_t _sensorID;
+  /* Not required for AFE Firmware
   int8_t _cs;
+  */
   unsigned long _meas_end;
-
+/* Not required for AFE Firmware
   uint8_t spixfer(uint8_t x);
-
+*/
   struct bme680_dev gas_sensor;
 };
 
