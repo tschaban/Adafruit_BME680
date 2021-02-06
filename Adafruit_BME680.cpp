@@ -53,7 +53,7 @@ static int8_t spi_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *reg_data,
 static int8_t spi_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *reg_data,
                         uint16_t len);
 static uint8_t spi_transfer(uint8_t x);
-* / static void delay_msec(uint32_t ms);
+static void delay_msec(uint32_t ms);
 
 // PUBLIC FUNCTIONS
 
@@ -343,7 +343,7 @@ unsigned long Adafruit_BME680::beginReading(void) {
   if (_gasEnabled)
     set_required_settings |= BME680_GAS_SENSOR_SEL;
 
-    /* Set the desired sensor configuration */
+/* Set the desired sensor configuration */
 #ifdef BME680_DEBUG
   Serial.println("Setting sensor settings");
 #endif
@@ -351,7 +351,7 @@ unsigned long Adafruit_BME680::beginReading(void) {
   if (rslt != BME680_OK)
     return 0;
 
-    /* Set the power mode */
+/* Set the power mode */
 #ifdef BME680_DEBUG
   Serial.println("Setting power mode");
 #endif
